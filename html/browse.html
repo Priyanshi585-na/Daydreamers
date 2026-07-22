@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Browse the Shelf — Daydreamers</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&family=Playfair+Display:wght@600;700&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <link rel="stylesheet" href="../css/styles.css">
+</head>
+
+<body>
+
+  <header>
+    <div class="logo">
+      <i class="fa-solid fa-book-open"></i>
+      <span>Daydreamers.</span>
+    </div>
+
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="./browse.html">Browse</a>
+      <a href="#">My Listings</a>
+      <a href="#">About</a>
+    </nav>
+
+    <button class="list-book-btn">
+      List a Book
+    </button>
+  </header>
+
+  <section class="page-header">
+    <div class="wrap">
+      <span class="eyebrow">Browse</span>
+      <h1>The Shelf</h1>
+      <div class="search-bar">
+        <input type="text" id="search-input" placeholder="Search by title, genre, author...">
+        <button id="search-btn">
+          <i class="fa-solid fa-magnifying-glass"></i>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <div class="wrap">
+    <div class="browse-layout">
+
+      <aside class="filters">
+        <div class="filter-group">
+          <h4>Genre</h4>
+          <label class="filter-option"><input type="checkbox" class="genre-filter" value="subject:textbooks">
+            Textbooks</label>
+          <label class="filter-option"><input type="checkbox" class="genre-filter" value="subject:fiction"> Novels &amp;
+            Fiction</label>
+          <label class="filter-option"><input type="checkbox" class="genre-filter" value="subject:poetry"> Poetry &amp;
+            Plays</label>
+          <label class="filter-option"><input type="checkbox" class="genre-filter" value="subject:science fiction">
+            Sci-Fi &amp; Fantasy</label>
+          <label class="filter-option"><input type="checkbox" class="genre-filter" value="subject:nonfiction">
+            Non-Fiction</label>
+        </div>
+
+        <div class="filter-group">
+          <h4>Condition</h4>
+          <label class="filter-option"><input type="checkbox"> Like new</label>
+          <label class="filter-option"><input type="checkbox"> Good</label>
+          <label class="filter-option"><input type="checkbox"> Well-loved</label>
+        </div>
+
+        <div class="filter-group">
+          <h4>Price</h4>
+          <label class="filter-option"><input type="checkbox"> Free</label>
+          <label class="filter-option"><input type="checkbox"> Under ₹200</label>
+          <label class="filter-option"><input type="checkbox"> Any price</label>
+        </div>
+
+        <div class="filter-group">
+          <h4>Status</h4>
+          <label class="filter-option"><input type="checkbox" checked> Available only</label>
+        </div>
+
+        <span class="clear-filters" id="clear-filters">Clear all filters</span>
+      </aside>
+
+      <!-- RESULTS -->
+      <div class="results">
+        <div class="results-bar">
+          <span class="resultsCount" id="resultsCount">Loading shelf...</span>
+          <select class="sort-select" id="sort-select">
+            <option value="relevance">Relevance</option>
+            <option value="newest">Newest first</option>
+          </select>
+        </div>
+
+
+        <div class="gridContainer" id="gridContainer">
+
+        </div>
+
+        <div class="pagination" id="pagination">
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <h3>Daydreamers</h3>
+    <p>A cozy place where books find new homes.</p>
+    <p>© 2026 Daydreamers</p>
+  </footer>
+
+  <script src="../js/app.js"></script>
+</body>
+
+</html>
