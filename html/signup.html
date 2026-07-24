@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Join Daydreamers | Campus Sign Up</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+
+<body class="auth-page-body">
+
+    <header>
+        <div class="logo">
+            <a href="index.html" style="text-decoration: none; color: inherit; display: flex; align-items: center; gap: 8px;">
+                <i class="fa-solid fa-book-open"></i>
+                <span>Daydreamers.</span>
+            </a>
+        </div>
+        <div>
+            <a href="login.html" class="list-book-btn" style="text-decoration: none;">Log In</a>
+        </div>
+    </header>
+
+    <main class="auth-container">
+        <div class="auth-card">
+            <div class="auth-header">
+                <h2>Join Your Campus</h2>
+                <p>Connect with peers to buy, lend, borrow, and sell books.</p>
+            </div>
+
+            <form class="auth-form" id="signup-form">
+                <div class="form-group">
+                    <label for="signup-name">Full Name</label>
+                    <div class="input-icon-wrapper">
+                        <i class="fa-solid fa-user"></i>
+                        <input type="text" id="signup-name" required placeholder="e.g. Alex Sharma">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="signup-email">Campus Email</label>
+                    <div class="input-icon-wrapper">
+                        <i class="fa-solid fa-graduation-cap"></i>
+                        <input type="email" id="signup-email" required placeholder="alex@university.edu">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="signup-year">College Year</label>
+                    <select id="signup-year" required>
+                        <option value="1st yr">1st Year</option>
+                        <option value="2nd yr" selected>2nd Year</option>
+                        <option value="3rd yr">3rd Year</option>
+                        <option value="4th yr">4th Year</option>
+                    </select>
+                </div>
+
+                <!-- CONTACT PREFERENCE METHOD -->
+                <div class="contact-pref-section">
+                    <label class="section-label">Preferred Contact Method</label>
+                    <p class="section-subtext">How should collegemates reach out when trading books?</p>
+
+                    <div class="contact-options">
+                        <label class="contact-chip">
+                            <input type="checkbox" id="pref-whatsapp" name="contact-pref" value="whatsapp" checked>
+                            <span class="chip-card">
+                                <i class="fa-brands fa-whatsapp"></i> WhatsApp
+                            </span>
+                        </label>
+
+                        <label class="contact-chip">
+                            <input type="checkbox" id="pref-telegram" name="contact-pref" value="telegram">
+                            <span class="chip-card">
+                                <i class="fa-brands fa-telegram"></i> Telegram
+                            </span>
+                        </label>
+                    </div>
+
+                    <!-- Dynamic Input Fields based on preference -->
+                    <div class="form-group contact-field" id="whatsapp-field">
+                        <label for="signup-phone">WhatsApp Number</label>
+                        <div class="input-icon-wrapper">
+                            <i class="fa-brands fa-whatsapp"></i>
+                            <input type="tel" id="signup-phone" placeholder="919876543210">
+                        </div>
+                    </div>
+
+                    <div class="form-group contact-field hidden" id="telegram-field">
+                        <label for="signup-telegram">Telegram Handle</label>
+                        <div class="input-icon-wrapper">
+                            <i class="fa-brands fa-telegram"></i>
+                            <input type="text" id="signup-telegram" placeholder="@your_handle">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="signup-password">Create Password</label>
+                    <div class="input-icon-wrapper">
+                        <i class="fa-solid fa-lock"></i>
+                        <input type="password" id="signup-password" required placeholder="••••••••">
+                    </div>
+                </div>
+
+                <button type="submit" class="list-book-btn auth-submit-btn">
+                    Create Account <i class="fa-solid fa-arrow-right"></i>
+                </button>
+            </form>
+
+            <div class="auth-footer">
+                <p>Already have an account? <a href="login.html">Log In</a></p>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <h3>Daydreamers</h3>
+        <p>A cozy place where books find new homes.</p>
+        <p>© 2026 Daydreamers</p>
+    </footer>
+
+    <script>
+        const waCheckbox = document.getElementById('pref-whatsapp');
+        const tgCheckbox = document.getElementById('pref-telegram');
+        const waField = document.getElementById('whatsapp-field');
+        const tgField = document.getElementById('telegram-field');
+
+        waCheckbox.addEventListener('change', () => {
+            waField.classList.toggle('hidden', !waCheckbox.checked);
+        });
+
+        tgCheckbox.addEventListener('change', () => {
+            tgField.classList.toggle('hidden', !tgCheckbox.checked);
+        });
+    </script>
+</body>
+</html>
