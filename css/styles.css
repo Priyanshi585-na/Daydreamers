@@ -996,3 +996,204 @@ footer p {
         grid-template-columns: 1fr;
     }
 }
+
+/* ==========================================
+   AUTH PAGES STYLING (Login & Signup)
+   ========================================== */
+
+.auth-container {
+    min-height: calc(100vh - 200px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 60px 20px;
+    background-color: var(--paper);
+}
+
+.auth-card {
+    background-color: var(--parchment);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-md);
+    padding: 40px;
+    width: 100%;
+    max-width: 460px;
+    box-shadow: var(--shadow-sm);
+}
+
+.auth-header {
+    text-align: center;
+    margin-bottom: 28px;
+}
+
+.auth-header h2 {
+    font-size: 2rem;
+    color: var(--espresso);
+    margin-bottom: 8px;
+}
+
+.auth-header p {
+    color: var(--sand);
+    font-size: 0.95rem;
+}
+
+.auth-form .form-group {
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.auth-form label {
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--espresso);
+}
+
+.label-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.forgot-link {
+    font-size: 0.8rem;
+    color: var(--caramel);
+    text-decoration: none;
+}
+
+.forgot-link:hover {
+    text-decoration: underline;
+}
+
+.input-icon-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.input-icon-wrapper i {
+    position: absolute;
+    left: 14px;
+    color: var(--sand);
+    font-size: 0.9rem;
+}
+
+.auth-form input[type="text"],
+.auth-form input[type="email"],
+.auth-form input[type="password"],
+.auth-form input[type="tel"],
+.auth-form select {
+    width: 100%;
+    padding: 12px 14px 12px 40px; /* Left padding makes room for icon */
+    border: 1px solid var(--line);
+    border-radius: var(--radius-sm);
+    background-color: var(--paper);
+    color: var(--espresso);
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.9rem;
+    outline: none;
+    transition: border-color 0.2s ease;
+}
+
+.auth-form select {
+    padding-left: 14px; /* No icon for selects */
+    cursor: pointer;
+}
+
+.auth-form input:focus,
+.auth-form select:focus {
+    border-color: var(--caramel);
+}
+
+.auth-submit-btn {
+    width: 100%;
+    margin-top: 10px;
+    padding: 12px;
+    font-size: 0.95rem;
+    justify-content: center;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+}
+
+.auth-footer {
+    text-align: center;
+    margin-top: 24px;
+    padding-top: 20px;
+    border-top: 1px solid var(--line);
+    font-size: 0.88rem;
+    color: var(--sand);
+}
+
+.auth-footer a {
+    color: var(--coffee);
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.auth-footer a:hover {
+    text-decoration: underline;
+}
+
+/* Contact Preferences Styling */
+.contact-pref-section {
+    background-color: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-sm);
+    padding: 16px;
+    margin-bottom: 20px;
+}
+
+.section-label {
+    font-size: 0.88rem;
+    font-weight: 600;
+    color: var(--espresso);
+    display: block;
+}
+
+.section-subtext {
+    font-size: 0.78rem;
+    color: var(--sand);
+    margin-bottom: 12px;
+}
+
+.contact-options {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 14px;
+}
+
+.contact-chip {
+    flex: 1;
+    cursor: pointer;
+}
+
+.contact-chip input {
+    display: none; /* Hide standard checkbox */
+}
+
+.chip-card {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 8px 12px;
+    border: 1px solid var(--line);
+    border-radius: var(--radius-pill);
+    background-color: var(--parchment);
+    font-size: 0.82rem;
+    font-weight: 500;
+    color: var(--espresso);
+    transition: all 0.2s ease;
+}
+
+.contact-chip input:checked + .chip-card {
+    background-color: var(--espresso);
+    color: var(--paper);
+    border-color: var(--espresso);
+}
+
+.contact-field.hidden {
+    display: none;
+}

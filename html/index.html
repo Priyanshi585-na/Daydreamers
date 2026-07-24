@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Daydreamers</title>
+    <title>Daydreamers | Campus Book Exchange</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -28,17 +28,20 @@
         </div>
 
         <nav>
-
-            <a href="index.html" class="active">Home</a>
-            <a href="./browse.html">Browse</a>
-            <a href="#">My Listings</a>
-            <a href="./about.html">About</a>
-
+            <a href="#how-it-works" class="active">How It Works</a>
+            <a href="#categories">Explore</a>
+            <a href="#features">Features</a>
         </nav>
 
-        <button class="list-book-btn" id="list-book-btn">
-            List a Book
-        </button>
+        <div class="auth-buttons">
+            <a href="./login.html" class="list-book-btn secondary-btn"
+                style="text-decoration: none; margin-right: 8px;">
+                Log In
+            </a>
+            <a href="./signup.html" class="list-book-btn" style="text-decoration: none;">
+                Join Your Campus
+            </a>
+        </div>
 
     </header>
 
@@ -50,26 +53,26 @@
                 Another Reader.
             </h1>
             <p>
-                Buy, borrow or exchange books with students
-                from your university.
+                Buy, borrow or exchange books directly with students
+                from your university campus. Zero shipping, zero extra fees.
             </p>
 
             <div class="search-bar">
-                <input type="text" placeholder="Search your next read...">
-                <button>
+                <input type="text" placeholder="Search textbooks, authors, or subjects...">
+                <button onclick="window.location.href='./login.html'">
                     <i class="fa-solid fa-magnifying-glass"></i>
                 </button>
-
             </div>
 
             <div class="hero-buttons">
 
-                <button class="primary">
-                    Browse Books
+                <button onclick="window.location.href='./signup.html'" class="primary">
+                    Get Started Free
                 </button>
 
-                <button class="secondary">
-                    Sell a Book
+                <button onclick="document.querySelector('#how-it-works').scrollIntoView({ behavior: 'smooth' });"
+                    class="secondary">
+                    How It Works
                 </button>
 
             </div>
@@ -78,47 +81,74 @@
 
         <div class="hero-image">
 
-            <img src="../images/hero-books.jpg" alt="Books">
+            <img src="../images/landingpage.webp" alt="Books">
 
         </div>
 
     </section>
 
-    <section class="categories">
+    <!-- HOW IT WORKS SECTION -->
+    <section class="how-it-works" id="how-it-works" style="padding: 60px 8%; text-align: center;">
 
-        <h2>Explore</h2>
+        <div class="section-heading" style="justify-content: center; margin-bottom: 40px;">
+            <h2>How Daydreamers Works</h2>
+        </div>
+
+        <div class="features" style="padding: 0;">
+
+            <div class="feature">
+                <i class="fa-solid fa-user-graduate"></i>
+                <h3>1. Verify Campus</h3>
+                <p>
+                    Sign up with your university community to connect safely with verified peers.
+                </p>
+            </div>
+
+            <div class="feature">
+                <i class="fa-solid fa-magnifying-glass-location"></i>
+                <h3>2. Find or List</h3>
+                <p>
+                    Search required course materials or post books you no longer need in seconds.
+                </p>
+            </div>
+
+            <div class="feature">
+                <i class="fa-brands fa-whatsapp"></i>
+                <h3>3. Connect & Exchange</h3>
+                <p>
+                    Reach out via WhatsApp and meet up conveniently on campus to hand off the book.
+                </p>
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- CATEGORIES SECTION -->
+    <section class="categories" id="categories">
+
+        <h2>Explore Campus Books</h2>
 
         <div class="category-container">
 
-            <div class="category-card">Programming</div>
+            <div class="category-card"><i class="fa-solid fa-code"></i> Programming</div>
 
-            <div class="category-card">Engineering</div>
+            <div class="category-card"><i class="fa-solid fa-gear"></i> Engineering</div>
 
-            <div class="category-card">Novels</div>
+            <div class="category-card"><i class="fa-solid fa-feather"></i> Novels</div>
 
-            <div class="category-card">Competitive Exams</div>
+            <div class="category-card"><i class="fa-solid fa-graduation-cap"></i> Competitive Exams</div>
 
-            <div class="category-card">Business</div>
+            <div class="category-card"><i class="fa-solid fa-chart-line"></i> Business</div>
 
-            <div class="category-card">Science</div>
+            <div class="category-card"><i class="fa-solid fa-flask"></i> Science</div>
 
         </div>
 
     </section>
 
-    <section class="books">
-        <div class="section-heading">
-            <h2>Recently Added</h2>
-            <a href="browse.html">View All →</a>
-        </div>
-
-        <!-- Dynamic container loaded via JS -->
-        <div class="book-grid" id="homepage-recent-grid">
-            <!-- Dynamic cards will be injected here -->
-        </div>
-    </section>
-
-    <section class="features">
+    <!-- CORE FEATURES SECTION -->
+    <section class="features" id="features">
 
         <div class="feature">
 
@@ -127,7 +157,7 @@
             <h3>Save Money</h3>
 
             <p>
-                Buy books directly from seniors at affordable prices.
+                Buy books directly from seniors at student-friendly, affordable prices.
             </p>
 
         </div>
@@ -139,7 +169,7 @@
             <h3>Borrow Easily</h3>
 
             <p>
-                Borrow books for a semester instead of buying new ones.
+                Borrow books for a semester or exam week instead of buying new ones.
             </p>
 
         </div>
@@ -151,7 +181,7 @@
             <h3>Exchange Books</h3>
 
             <p>
-                Trade books with fellow students.
+                Trade unused textbooks seamlessly with fellow college mates.
             </p>
 
         </div>
@@ -159,102 +189,25 @@
     </section>
 
 
-    <section class="quote">
+    <!-- PRE-LOGIN CALL TO ACTION -->
+    <section class="quote" style="text-align: center; padding: 60px 20px;">
 
-        <blockquote>
+        <blockquote style="margin-bottom: 24px;">
 
-            “A reader lives a thousand lives before he dies.”
+            “Show me a family of readers, and I will show you the people who move the world.”
 
         </blockquote>
 
+        <p style="color: var(--sand); margin-bottom: 28px; font-size: 1.1rem;">
+            Join your university mates and start sharing knowledge today.
+        </p>
+
+        <a href="./signup.html" class="list-book-btn"
+            style="text-decoration: none; padding: 12px 32px; font-size: 1rem;">
+            Join Daydreamers Now
+        </a>
+
     </section>
-
-
-
-    <!-- LIST A BOOK MODAL -->
-    <div class="modal-overlay" id="list-modal">
-        <div class="modal-content">
-            <button class="modal-close" id="modal-close">&times;</button>
-            <h2>List a Book on Campus</h2>
-
-            <div id="modal-step-1">
-                <p class="modal-subtitle">Step 1: Search and select the book</p>
-                <div class="modal-search-box">
-                    <input type="text" id="modal-search-input" placeholder="Type title or author (e.g. Clean Code)">
-                    <button type="button" id="modal-search-btn">Search</button>
-                </div>
-                <div id="modal-search-results" class="modal-results-list"></div>
-            </div>
-
-            <form id="modal-step-2" style="display: none;">
-                <p class="modal-subtitle">Step 2: Add listing details</p>
-
-                <!-- Selected Book Preview -->
-                <div class="selected-book-preview" id="selected-preview"></div>
-
-                <div class="form-grid">
-                    <div class="form-group">
-                        <label for="lister-name">Your Name</label>
-                        <input type="text" id="lister-name" required placeholder="e.g. Rohan">
-                    </div>
-
-                    <div class="form-group">
-                        <label for="lister-year">College Year</label>
-                        <select id="lister-year" required>
-                            <option value="1st yr">1st Year</option>
-                            <option value="2nd yr">2nd Year</option>
-                            <option value="3rd yr">3rd Year</option>
-                            <option value="4th yr">4th Year</option>
-                        </select>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="listing-genre">Genre / Category</label>
-                        <select id="listing-genre" required>
-                            <option value="fiction" selected>Novels &amp; Fiction</option>
-                            <option value="textbooks">Textbooks &amp; Coursework</option>
-                            <option value="science">Science &amp; Tech</option>
-                            <option value="poetry">Poetry &amp; Plays</option>
-                        </select>
-                    </div>
-
-
-                    <div class="form-group">
-                        <label for="listing-type">Listing Type</label>
-                        <select id="listing-type" required>
-                            <option value="Lend">Lend (Free)</option>
-                            <option value="Sell">Sell</option>
-                            <option value="Borrow">Request to Borrow</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="listing-price">Price</label>
-                        <input type="text" id="listing-price" required value="Free">
-                    </div>
-                    <div class="form-group">
-                        <label for="listing-condition">Condition</label>
-                        <select id="listing-condition" required>
-                            <option value="Like new">Like new</option>
-                            <option value="Good condition" selected>Good condition</option>
-                            <option value="Well-loved">Well-loved</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="lister-phone">WhatsApp Phone Number</label>
-                        <input type="tel" id="lister-phone" required placeholder="e.g. 919876543210">
-                    </div>
-                </div>
-
-                <div class="modal-actions">
-                    <button type="button" class="btn-secondary" id="btn-back">← Pick Different Book</button>
-                    <button type="submit" class="btn-primary">Publish Listing</button>
-                </div>
-            </form>
-        </div>
-    </div>
-
-
-
 
 
     <footer>
@@ -272,10 +225,6 @@
         </p>
 
     </footer>
-
-
-    <script src="../js/app.js"></script>
-    <script src="../js/db.js"></script>
 
 </body>
 
