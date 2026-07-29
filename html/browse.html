@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Browse the Shelf — Daydreamers</title>
+  <title>Browse the Shelf | Daydreamers</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -26,7 +26,7 @@
     <nav>
       <a href="home.html">Home</a>
       <a href="./browse.html" class="active">Browse</a>
-      <a href="#">My Listings</a>
+      <a href="./mylistings.html">My Listings</a>
       <a href="./about.html">About</a>
     </nav>
 
@@ -54,35 +54,36 @@
       <aside class="filters">
         <div class="filter-group">
           <h4>Genre</h4>
-          <label class="filter-option"><input type="checkbox" class="genre-filter" value="subject:textbooks">
+          <label class="filter-option"><input type="checkbox" class="genre-filter" value="textbooks">
             Textbooks</label>
-          <label class="filter-option"><input type="checkbox" class="genre-filter" value="subject:fiction"> Novels &amp;
+          <label class="filter-option"><input type="checkbox" class="genre-filter" value="fiction"> Novels &amp;
             Fiction</label>
-          <label class="filter-option"><input type="checkbox" class="genre-filter" value="subject:poetry"> Poetry &amp;
+          <label class="filter-option"><input type="checkbox" class="genre-filter" value="poetry"> Poetry &amp;
             Plays</label>
-          <label class="filter-option"><input type="checkbox" class="genre-filter" value="subject:science fiction">
+          <label class="filter-option"><input type="checkbox" class="genre-filter" value="science">
             Sci-Fi &amp; Fantasy</label>
-          <label class="filter-option"><input type="checkbox" class="genre-filter" value="subject:nonfiction">
+          <label class="filter-option"><input type="checkbox" class="genre-filter" value="nonfiction">
             Non-Fiction</label>
         </div>
 
         <div class="filter-group">
           <h4>Condition</h4>
-          <label class="filter-option"><input type="checkbox"> Like new</label>
-          <label class="filter-option"><input type="checkbox"> Good</label>
-          <label class="filter-option"><input type="checkbox"> Well-loved</label>
+          <label class="filter-option"><input type="checkbox" class="condition-filter" value="Like new"> Like new</label>
+          <label class="filter-option"><input type="checkbox" class="condition-filter" value="Good condition"> Good</label>
+          <label class="filter-option"><input type="checkbox" class="condition-filter" value="Well-loved"> Well-loved</label>
         </div>
 
         <div class="filter-group">
           <h4>Price</h4>
-          <label class="filter-option"><input type="checkbox"> Free</label>
-          <label class="filter-option"><input type="checkbox"> Under ₹200</label>
-          <label class="filter-option"><input type="checkbox"> Any price</label>
+          <label class="filter-option"><input type="checkbox" class="price-filter" value="Free"> Free</label>
+          <label class="filter-option"><input type="checkbox" class="price-filter" value="Under ₹200"> Under ₹200</label>
         </div>
 
         <div class="filter-group">
           <h4>Status</h4>
-          <label class="filter-option"><input type="checkbox" checked> Available only</label>
+          <label class="filter-option"><input type="checkbox" class="type-filter" value="Lend"> Lend</label>
+          <label class="filter-option"><input type="checkbox" class="type-filter" value="Sell"> Sell</label>
+          <label class="filter-option"><input type="checkbox" class="type-filter" value="Borrow"> Borrow</label>
         </div>
 
         <span class="clear-filters" id="clear-filters">Clear all filters</span>
@@ -111,8 +112,8 @@
     <p>© 2026 Daydreamers</p>
   </footer>
 
-  <script src="../js/app.js"></script>
   <script src="../js/db.js"></script>
+  <script src="../js/app.js"></script>
 </body>
 
 </html>

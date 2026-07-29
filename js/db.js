@@ -43,7 +43,7 @@ const SAMPLE_CAMPUS_LISTINGS = [
     condition: "Well-loved",
     type: "Lend",
     price: "Free",
-    status: "Reserved", // Filtered out from public shelf
+    status: "Reserved",
     phone: "919876543212"
   },
   {
@@ -71,19 +71,25 @@ const CampusDB = {
         localStorage.setItem(DB_STORAGE_KEY, JSON.stringify(SAMPLE_CAMPUS_LISTINGS));
         return SAMPLE_CAMPUS_LISTINGS;
       }
-      return JSON.parse(data);
+
+      const parsed = JSON.parse(data);
+      return Array.isArray(parsed) ? parsed : SAMPLE_CAMPUS_LISTINGS;
     } catch (e) {
       console.error("Error reading from CampusDB:", e);
       return SAMPLE_CAMPUS_LISTINGS;
     }
   },
 
-
   getAvailable() {
-    return this.getAll().filter(item => item.status === "Available");
+    return this.getAll().filter(item => item.status === "Available" || item.status === "available");
   },
 
- 
+  getMyListings() {
+    const currentUser = JSON.parse(localStorage.getItem("daydreamers_current_user_v1") || "null");
+    if (!currentUser) return [];
+
+    return this.getAll().filter(item => item.listerEmail && item.listerEmail.toLowerCase() === currentUser.email.toLowerCase());
+  },
 
   addListing(newBook) {
     const listings = this.getAll();
@@ -94,39 +100,69 @@ const CampusDB = {
       ...newBook
     };
 
-    listings.unshift(formattedListing); 
+    listings.unshift(formattedListing);
     localStorage.setItem(DB_STORAGE_KEY, JSON.stringify(listings));
     return formattedListing;
   },
 
+  markAsSold(id) {
+    const listings = this.getAll();
+    const updated = listings.map(item => (item.id === id ? { ...item, status: "sold" } : item));
+    localStorage.setItem(DB_STORAGE_KEY, JSON.stringify(updated));
+    return true;
+  },
 
-  query({ text = "", genre = null, condition = null, type = null }) {
+  deleteListing(id) {
+    const listings = this.getAll();
+    const filtered = listings.filter(item => item.id !== id);
+    localStorage.setItem(DB_STORAGE_KEY, JSON.stringify(filtered));
+    return true;
+  },
+
+  query({ text = "", genre = null, condition = null, type = null, price = null }) {
     let results = this.getAvailable();
 
     if (text.trim()) {
       const queryStr = text.toLowerCase();
-      results = results.filter(b => 
+      results = results.filter(b =>
         (b.title && b.title.toLowerCase().includes(queryStr)) ||
         (b.author && b.author.toLowerCase().includes(queryStr)) ||
-        (b.listerName && b.listerName.toLowerCase().includes(queryStr))
+        (b.listerName && b.listerName.toLowerCase().includes(queryStr)) ||
+        (b.genre && b.genre.toLowerCase().includes(queryStr))
       );
     }
 
-    if (genre) {
-      results = results.filter(b => b.genre === genre);
+    const selectedGenres = Array.isArray(genre) ? genre : genre ? [genre] : [];
+    if (selectedGenres.length > 0) {
+      results = results.filter(b => selectedGenres.includes(b.genre));
     }
 
-    if (condition) {
-      results = results.filter(b => b.condition === condition);
+    const selectedConditions = Array.isArray(condition) ? condition : condition ? [condition] : [];
+    if (selectedConditions.length > 0) {
+      results = results.filter(b => selectedConditions.includes(b.condition));
     }
 
-    if (type) {
-      results = results.filter(b => b.type === type);
+    const selectedTypes = Array.isArray(type) ? type : type ? [type] : [];
+    if (selectedTypes.length > 0) {
+      results = results.filter(b => selectedTypes.includes(b.type));
+    }
+
+    const selectedPrices = Array.isArray(price) ? price : price ? [price] : [];
+    if (selectedPrices.length > 0) {
+      results = results.filter(b => {
+        return selectedPrices.some(option => {
+          if (option === "Free") return String(b.price).toLowerCase() === "free";
+          if (option === "Under ₹200") {
+            const numeric = Number(String(b.price).replace(/[^\d]/g, ""));
+            return !Number.isNaN(numeric) && numeric <= 200;
+          }
+          return false;
+        });
+      });
     }
 
     return results;
   },
-
 
   reset() {
     localStorage.setItem(DB_STORAGE_KEY, JSON.stringify(SAMPLE_CAMPUS_LISTINGS));
