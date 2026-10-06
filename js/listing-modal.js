@@ -44,11 +44,18 @@
                     const author = doc.author_name?.[0] || "Unknown Author";
                     const openLibraryId = doc.key?.replace("/works/", "") || "OL1W";
                     const cover = doc.cover_i ? `https://covers.openlibrary.org/b/id/${doc.cover_i}-S.jpg` : "https://via.placeholder.com/40x60?text=No+Cover";
+                    console.log("COVER ID FROM API:", doc.cover_i);
                     const item = document.createElement("div");
                     item.className = "api-book-item";
                     item.innerHTML = `<img src="${cover}" alt="${title}"><div><div style="font-weight:600; font-size:0.9rem;">${title}</div><div style="font-size:0.8rem; color:#6F4E37;">${author}</div></div>`;
                     item.addEventListener("click", () => {
-                        selectedBookData = { title, author, openLibraryId, isbn: doc.isbn?.[0] || "" };
+                        selectedBookData = {
+                            title,
+                            author,
+                            openLibraryId,
+                            coverId: doc.cover_i || null,
+                            isbn: doc.isbn?.[0] || ""
+                        };
                         selectedPreview.innerHTML = `<img src="${cover}" alt="${title}"><div><div style="font-weight:600;">${title}</div><div style="font-size:0.85rem; color:#6F4E37;">${author}</div></div>`;
                         showStep(2);
                     });
@@ -69,6 +76,9 @@
             event.preventDefault();
             if (!selectedBookData) return;
             const currentUser = window.Daydreamers.auth.getCurrentUser();
+
+            console.log("SELECTED BOOK BEFORE SAVE:", selectedBookData);
+
             CampusDB.addListing({
                 ...selectedBookData,
                 genre: document.getElementById("listing-genre").value,

@@ -1,20 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Listings — Daydreamers</title>
+    <title>My Listings | Daydreamers</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&family=Playfair+Display:wght@600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
-    
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&family=Playfair+Display:wght@600;700&family=Space+Mono:wght@400;700&display=swap"
+        rel="stylesheet">
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <link rel="stylesheet" href="../css/styles.css">
 </head>
+
 <body>
 
-    <!-- HEADER -->
+
     <header>
         <div class="logo">
             <i class="fa-solid fa-book-open"></i>
@@ -22,7 +26,7 @@
         </div>
 
         <nav>
-            <a href="home.html">Home</a>
+            <a href="index.html">Home</a>
             <a href="browse.html">Browse</a>
             <a href="mylistings.html" class="active">My Listings</a>
             <a href="about.html">About</a>
@@ -33,24 +37,26 @@
 
     <main class="wrap">
         <section class="page-header">
-            <span class="eyebrow">Dashboard</span>
-            <h1>My Listings</h1>
-            <p>Manage the books you’ve put on the campus shelf. Mark them as handed over or remove them once traded.</p>
+            <span class="eyebrow">MY LISTINGS</span>
+            <h1 class="username"></h1>
+            <p>Manage the books you’ve put on the shelf.</p>
         </section>
 
         <section class="my-listings-container" style="padding: 40px 0;">
             <div id="my-listings-grid" class="book-grid">
-                <!-- Dynamic listing cards will render here -->
+
+
             </div>
         </section>
+
     </main>
 
-    <!-- LIST A BOOK MODAL -->
+
     <div class="modal-overlay" id="list-modal">
         <div class="modal-content">
             <button class="modal-close" id="modal-close">&times;</button>
             <h2>List a Book on Campus</h2>
-            
+
             <div id="modal-step-1">
                 <p class="modal-subtitle">Step 1: Search and select the book</p>
                 <div class="modal-search-box">
@@ -127,17 +133,72 @@
         </div>
     </div>
 
+
+
+    <div class="modal-overlay" id="edit-modal" style="display: none;">
+        <div class="modal-content">
+
+            <button class="modal-close" id="edit-modal-close">&times;</button>
+
+            <h2>Edit Your Listing</h2>
+
+            <p class="modal-subtitle">
+                Update the details of your book
+            </p>
+
+            <form id="edit-form">
+
+                <div class="form-grid">
+
+                    <div class="form-group">
+                        <label for="edit-condition">Condition</label>
+                        <select id="edit-condition" required>
+                            <option value="Like new">Like new</option>
+                            <option value="Good condition">Good condition</option>
+                            <option value="Well-loved">Well-loved</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="edit-price">Price</label>
+                        <input type="text" id="edit-price" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="edit-availability">Availability</label>
+                        <select id="edit-availability" required>
+                            <option value="available">Available</option>
+                            <option value="reserved">Reserved</option>
+                        </select>
+                    </div>
+
+                </div>
+
+                <div class="modal-actions">
+                    <button type="button" class="btn-secondary" id="cancel-edit">
+                        Cancel
+                    </button>
+
+                    <button type="submit" class="btn-primary">
+                        Save Changes
+                    </button>
+                </div>
+
+            </form>
+
+        </div>
+    </div>
+
+
+
     <footer>
         <h3>Daydreamers</h3>
         <p>A cozy place where books find new homes.</p>
         <p>© 2026 Daydreamers</p>
     </footer>
 
-    <script src="../js/db.js"></script>
-    <script src="../js/auth.js"></script>
-    <script src="../js/shelf.js"></script>
-    <script src="../js/browse.js"></script>
-    <script src="../js/listing-modal.js"></script>
-    <script src="../js/app.js"></script>
+    <script type="module" src="../js/my_listings.js"></script>
+
 </body>
+
 </html>

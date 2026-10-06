@@ -35,17 +35,29 @@ export function getBooks() {
       const transaction = db.transaction("books", "readonly");
       const store = transaction.objectStore("books");
 
-      const getRequest = store.getAll();
+      const books = [];
+      const request = store.openCursor();
 
-      getRequest.onsuccess = function () {
-        resolve(getRequest.result);
+      request.onsuccess = function (event) {
+        const cursor = event.target.result;
+
+        if (cursor) {
+          const book = cursor.value;
+          book.id = cursor.key;
+          books.push(book);
+          cursor.continue();
+        } 
+        
+        else {
+          resolve(books);
+        }
       };
 
-      getRequest.onerror = function () {
-        reject(getRequest.error);
-      }
-    })
-  })
+      request.onerror = function () {
+        reject(request.error);
+      };
+    });
+  });
 }
 
 
@@ -102,7 +114,7 @@ export function updateBook(book) {
 export function deleteBook(id) {
 
   return dbPromise.then((db) => {
-    
+
     const transaction = db.transaction("books", "readwrite");
     const store = transaction.objectStore("books");
 
