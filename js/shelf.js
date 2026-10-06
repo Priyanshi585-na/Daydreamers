@@ -9,7 +9,6 @@ import {
 
 const allBooks = await getBooks();
 
-
 const book_grid = document.getElementById('homepage-recent-grid');
 
 function createBookCard(book) {
@@ -31,7 +30,7 @@ function createBookCard(book) {
     return card;
 }
 
-allBooks.forEach(listing => {
+allBooks.slice(0, 4).forEach(listing => {
     const card = createBookCard(listing);
     book_grid.appendChild(card);
-})
+});
