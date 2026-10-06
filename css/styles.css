@@ -681,6 +681,16 @@ blockquote {
     background: var(--caramel);
 }
 
+.listing-actions .edit-btn {
+    background: #6F4E37;
+    color: white;
+}
+
+.listing-actions .delete-btn {
+    background: #EFE3D3;
+    color: #6F4E37;
+}
+
 .btn-secondary {
     background: var(--parchment);
     color: var(--espresso);
