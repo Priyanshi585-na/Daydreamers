@@ -1223,3 +1223,101 @@ footer p {
 .contact-field.hidden {
     display: none;
 }
+
+.search-result {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+
+    padding: 12px;
+    margin-bottom: 10px;
+
+    background: #fff8f0;
+    border: 1px solid #e8dccb;
+    border-radius: 10px;
+
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.search-result:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(111, 78, 55, 0.12);
+}
+
+.search-result-cover {
+    width: 55px;
+    height: 78px;
+    object-fit: cover;
+    border-radius: 5px;
+    flex-shrink: 0;
+}
+
+.search-result-info {
+    flex: 1;
+    min-width: 0;
+}
+
+.search-result-info strong {
+    display: block;
+    color: #3e2c22;
+    font-size: 1rem;
+    margin-bottom: 4px;
+}
+
+.search-result-info p {
+    margin: 0;
+    color: #8b6f5c;
+    font-size: 0.85rem;
+}
+
+.search-select-btn {
+    border: none;
+    background: #6f4e37;
+    color: white;
+
+    padding: 8px 14px;
+    border-radius: 20px;
+
+    cursor: pointer;
+    font-size: 0.85rem;
+
+    transition: background 0.2s ease;
+}
+
+.search-select-btn:hover {
+    background: #5a3f2d;
+}
+
+.search-result .search-select-btn {
+    border: none;
+    background: #6F4E37;
+    color: white;
+    padding: 8px 16px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 0.85rem;
+    font-family: inherit;
+    white-space: nowrap;
+}
+
+.search-result .search-select-btn:hover {
+    background: #5A3F2D;
+}
+
+#modal-search-results::-webkit-scrollbar {
+    width: 7px;
+}
+
+#modal-search-results::-webkit-scrollbar-track {
+    background: #EFE3D3;
+    border-radius: 10px;
+}
+
+#modal-search-results::-webkit-scrollbar-thumb {
+    background: #A38B72;
+    border-radius: 10px;
+}
+
+#modal-search-results::-webkit-scrollbar-thumb:hover {
+    background: #6F4E37;
+}

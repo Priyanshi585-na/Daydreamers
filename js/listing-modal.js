@@ -1,104 +1,130 @@
-(function () {
-    function initListingModal() {
-        const modal = document.getElementById("list-modal");
-        const step1 = document.getElementById("modal-step-1");
-        const step2 = document.getElementById("modal-step-2");
-        if (!modal || !step1 || !step2) return;
+import { addBook } from "./db.js";
 
-        const modalResults = document.getElementById("modal-search-results");
-        const searchInput = document.getElementById("modal-search-input");
-        const selectedPreview = document.getElementById("selected-preview");
-        let selectedBookData = null;
+const modal = document.getElementById("list-modal");
+const closebtn = document.getElementById("modal-close");
+const backBtn = document.getElementById("btn-back");
 
-        const reset = () => {
-            modal.classList.remove("active");
-            step1.style.display = "block";
-            step2.style.display = "none";
-            searchInput.value = "";
-            modalResults.innerHTML = "";
-            selectedPreview.innerHTML = "";
-            selectedBookData = null;
-            step2.reset();
-        };
-        const showStep = step => {
-            step1.style.display = step === 1 ? "block" : "none";
-            step2.style.display = step === 2 ? "block" : "none";
-        };
+const searchbtn = document.getElementById("modal-search-btn");
+const searchResults = document.getElementById("modal-search-results");
+const searchInput = document.getElementById("modal-search-input");
 
-        document.querySelectorAll(".list-book-btn").forEach(button => button.addEventListener("click", () => modal.classList.add("active")));
-        document.getElementById("modal-close")?.addEventListener("click", reset);
-        modal.addEventListener("click", event => { if (event.target === modal) reset(); });
-        document.getElementById("btn-back")?.addEventListener("click", () => showStep(1));
+const step1 = document.getElementById("modal-step-1")
+const step2 = document.getElementById("modal-step-2")
 
-        document.getElementById("modal-search-btn")?.addEventListener("click", async () => {
-            const query = searchInput.value.trim();
-            if (!query) return;
-            modalResults.innerHTML = "<p>Searching Library...</p>";
-            try {
-                const response = await fetch(`https://openlibrary.org/search.json?q=${encodeURIComponent(query)}&limit=5`);
-                const data = await response.json();
-                modalResults.innerHTML = "";
-                if (!data.docs?.length) { modalResults.innerHTML = "<p>No matching books found.</p>"; return; }
-                data.docs.forEach(doc => {
-                    const title = doc.title || "Untitled";
-                    const author = doc.author_name?.[0] || "Unknown Author";
-                    const openLibraryId = doc.key?.replace("/works/", "") || "OL1W";
-                    const cover = doc.cover_i ? `https://covers.openlibrary.org/b/id/${doc.cover_i}-S.jpg` : "https://via.placeholder.com/40x60?text=No+Cover";
-                    console.log("COVER ID FROM API:", doc.cover_i);
-                    const item = document.createElement("div");
-                    item.className = "api-book-item";
-                    item.innerHTML = `<img src="${cover}" alt="${title}"><div><div style="font-weight:600; font-size:0.9rem;">${title}</div><div style="font-size:0.8rem; color:#6F4E37;">${author}</div></div>`;
-                    item.addEventListener("click", () => {
-                        selectedBookData = {
-                            title,
-                            author,
-                            openLibraryId,
-                            coverId: doc.cover_i || null,
-                            isbn: doc.isbn?.[0] || ""
-                        };
-                        selectedPreview.innerHTML = `<img src="${cover}" alt="${title}"><div><div style="font-weight:600;">${title}</div><div style="font-size:0.85rem; color:#6F4E37;">${author}</div></div>`;
-                        showStep(2);
-                    });
-                    modalResults.appendChild(item);
-                });
-            } catch (error) {
-                console.error("Modal Search Error:", error);
-                modalResults.innerHTML = "<p style='color:red;'>Search failed. Try again.</p>";
-            }
+const bookPreview = document.getElementById("selected-preview");
+
+
+let selectedBook = null;
+
+
+function selectBook(book) {
+
+    selectedBook = book;
+
+    step1.style.display = "none";
+    step2.style.display = "block";
+
+    bookPreview.innerHTML = `
+    <img src="https://covers.openlibrary.org/b/id/${book.cover_i}-M.jpg" alt="${book.title}" class="search-result-cover">
+
+    <h3>${book.title}</h3>
+    <h4>A book by ${book.author_name ? book.author_name[0] : "Unknown author"}</h4>
+    `
+}
+
+
+
+searchbtn.addEventListener("click", async function () {
+    const query = searchInput.value.trim();
+
+    searchResults.innerHTML = "Searching through the shelf...";
+
+    const books = await fetch(`https://openlibrary.org/search.json?q=${encodeURIComponent(query)}&limit=5`);
+    const data = await books.json();
+
+    searchResults.innerHTML = "";
+
+    data.docs.forEach(book => {
+        const result = document.createElement("div");
+        result.className = "search-result";
+
+        result.innerHTML = `
+    <img 
+        src="https://covers.openlibrary.org/b/id/${book.cover_i}-M.jpg"
+        alt="${book.title}"
+        class="search-result-cover"
+    >
+
+    <div class="search-result-info">
+        <strong>${book.title}</strong>
+        <p>${book.author_name ? book.author_name[0] : "Unknown author"}</p>
+    </div>
+
+    <button type="button" class="search-select-btn">Select</button>
+`;
+
+        result.querySelector("button").addEventListener("click", function () {
+            selectBook(book);
         });
 
-        document.getElementById("listing-type")?.addEventListener("change", event => {
-            const priceInput = document.getElementById("listing-price");
-            if (priceInput) priceInput.value = event.target.value === "Lend" ? "Free" : "₹150";
-        });
+        searchResults.appendChild(result);
+    })
+})
 
-        step2.addEventListener("submit", event => {
-            event.preventDefault();
-            if (!selectedBookData) return;
-            const currentUser = window.Daydreamers.auth.getCurrentUser();
 
-            console.log("SELECTED BOOK BEFORE SAVE:", selectedBookData);
 
-            CampusDB.addListing({
-                ...selectedBookData,
-                genre: document.getElementById("listing-genre").value,
-                listerName: document.getElementById("lister-name").value,
-                listerEmail: currentUser?.email || "",
-                listerYear: document.getElementById("lister-year").value,
-                type: document.getElementById("listing-type").value,
-                price: document.getElementById("listing-price").value,
-                condition: document.getElementById("listing-condition").value,
-                phone: document.getElementById("lister-phone").value
-            });
-            const { renderShelf, renderMyListings } = window.Daydreamers.shelf;
-            if (document.getElementById("homepage-recent-grid")) renderShelf(CampusDB.getAvailable(), 8);
-            else if (document.getElementById("my-listings-grid")) renderMyListings();
-            else renderShelf(CampusDB.getAvailable());
-            reset();
-            alert("Your book has been published to the campus shelf!");
-        });
-    }
+step2.addEventListener("submit", async function (event) {
+    event.preventDefault();
 
-    window.Daydreamers = window.Daydreamers || {};
-    window.Daydreamers.listingModal = { initListingModal };
-}());
+    const book = {
+        cover_i: selectedBook.cover_i,
+        title: selectedBook.title,
+        author: selectedBook.author_name
+            ? selectedBook.author_name[0]
+            : "Unknown author",
+
+        listerName: document.getElementById("lister-name").value,
+        listerYear: document.getElementById("lister-year").value,
+
+        genre: document.getElementById("listing-genre").value,
+        listingType: document.getElementById("listing-type").value,
+        priceText: document.getElementById("listing-price").value,
+        condition: document.getElementById("listing-condition").value,
+
+        phone: document.getElementById("lister-phone").value,
+
+        isSold: false,
+        stampText: "Available"
+    };
+
+    await addBook(book);
+
+    modal.style.display = "none";
+    step2.reset();
+    bookPreview.innerHTML = "";
+    selectedBook = null;
+    step1.style.display = "block";
+    step2.style.display = "none";
+
+});
+
+
+const listBtns = document.querySelectorAll(".list-book-btn");
+
+listBtns.forEach(function(button) {
+    button.addEventListener("click", function() {
+        modal.style.display = "flex";
+    });
+});
+
+closebtn.addEventListener("click", function () {
+    modal.style.display = "none";
+})
+
+
+backBtn.addEventListener("click", function () {
+    step2.style.display = "none";
+    step1.style.display = "block";
+
+    selectedBook = null;
+});

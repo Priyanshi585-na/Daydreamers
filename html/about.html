@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,10 +8,13 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&family=Playfair+Display:wght@600;700&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <link rel="stylesheet" href="../css/styles.css">
 </head>
+
 <body>
 
     <header>
@@ -26,18 +30,19 @@
             <a href="./about.html" class="active">About</a>
         </nav>
 
-        <button class="list-book-btn">List a Book</button>
+        <button class="list-book-btn" id="list-book-btn">
+            List a Book
+        </button>
     </header>
 
     <main class="wrap">
-        <!-- HERO SECTION -->
         <section class="about-hero">
-            <span class="eyebrow" >Our Story</span>
+            <span class="eyebrow">Our Story</span>
             <h1>Books Find New Homes on Campus</h1>
-            <p>Daydreamers is a cozy, peer-to-peer marketplace built exclusively for students to buy, lend, borrow, and exchange books with peers right at their university.</p>
+            <p>Daydreamers is a cozy, peer-to-peer marketplace built exclusively for students to buy, lend, borrow, and
+                exchange books with peers right at their university.</p>
         </section>
 
-        <!-- STATS BANNER -->
         <div class="stats-banner">
             <div class="stat-item">
                 <h2>100%</h2>
@@ -53,10 +58,10 @@
             </div>
         </div>
 
-        <!-- HOW IT WORKS FEATURES -->
         <section class="about-section">
             <div style="text-align: center; max-width: 600px; margin: 0 auto 32px;">
-                <h2 style="font-family: 'Playfair Display', serif; font-size: 1.8rem; margin-bottom: 8px;">Why Daydreamers?</h2>
+                <h2 style="font-family: 'Playfair Display', serif; font-size: 1.8rem; margin-bottom: 8px;">Why
+                    Daydreamers?</h2>
                 <p style="color: #64748b;">Say goodbye to overpriced textbook stores and dead-end group chats.</p>
             </div>
 
@@ -64,19 +69,22 @@
                 <div class="feature-card">
                     <i class="fa-solid fa-graduation-cap"></i>
                     <h3>Verified Campus Community</h3>
-                    <p>Connect directly with students in your batches or departments. Pick up books outside lecture halls without paying for shipping.</p>
+                    <p>Connect directly with students in your batches or departments. Pick up books outside lecture
+                        halls without paying for shipping.</p>
                 </div>
 
                 <div class="feature-card">
                     <i class="fa-solid fa-hand-holding-hand"></i>
                     <h3>Lend or Sell Flexibly</h3>
-                    <p>Have course readers or novels gathering dust? Choose to list them for sale, offer them for free lending, or trade with batchmates.</p>
+                    <p>Have course readers or novels gathering dust? Choose to list them for sale, offer them for free
+                        lending, or trade with batchmates.</p>
                 </div>
 
                 <div class="feature-card">
                     <i class="fa-brands fa-whatsapp"></i>
                     <h3>Instant WhatsApp Connect</h3>
-                    <p>No waiting around for emails. Every listing links straight to the lister's WhatsApp with a pre-filled message for quick meetups.</p>
+                    <p>No waiting around for emails. Every listing links straight to the lister's WhatsApp with a
+                        pre-filled message for quick meetups.</p>
                 </div>
             </div>
         </section>
@@ -85,9 +93,95 @@
         <section class="cta-box">
             <h2>Have a book sitting on your shelf?</h2>
             <p>Pass it on to someone at your university who needs it next semester.</p>
-            <button class="list-book-btn">List a Book Now</button>
+            <button class="list-book-btn" id="list-book-btn">List a Book Now</button>
         </section>
     </main>
+
+
+
+    <div class="modal-overlay" id="list-modal">
+        <div class="modal-content">
+            <button class="modal-close" id="modal-close">&times;</button>
+            <h2>List a Book on Campus</h2>
+
+            <div id="modal-step-1">
+                <p class="modal-subtitle">Step 1: Search and select the book</p>
+                <div class="modal-search-box">
+                    <input type="text" id="modal-search-input" placeholder="Type title or author (e.g. Clean Code)">
+                    <button type="button" id="modal-search-btn">Search</button>
+                </div>
+                <div id="modal-search-results" class="modal-results-list"></div>
+            </div>
+
+            <form id="modal-step-2" style="display: none;">
+                <p class="modal-subtitle">Step 2: Add listing details</p>
+                <div class="selected-book-preview" id="selected-preview"></div>
+
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="lister-name">Your Name</label>
+                        <input type="text" id="lister-name" required placeholder="e.g. Rohan">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="lister-year">College Year</label>
+                        <select id="lister-year" required>
+                            <option value="1st yr">1st Year</option>
+                            <option value="2nd yr">2nd Year</option>
+                            <option value="3rd yr">3rd Year</option>
+                            <option value="4th yr">4th Year</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="listing-genre">Genre / Category</label>
+                        <select id="listing-genre" required>
+                            <option value="fiction" selected>Novels &amp; Fiction</option>
+                            <option value="textbooks">Textbooks &amp; Coursework</option>
+                            <option value="science">Science &amp; Tech</option>
+                            <option value="poetry">Poetry &amp; Plays</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="listing-type">Listing Type</label>
+                        <select id="listing-type" required>
+                            <option value="Lend">Lend (Free)</option>
+                            <option value="Sell">Sell</option>
+                            <option value="Borrow">Request to Borrow</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="listing-price">Price</label>
+                        <input type="text" id="listing-price" required value="Free">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="listing-condition">Condition</label>
+                        <select id="listing-condition" required>
+                            <option value="Like new">Like new</option>
+                            <option value="Good condition" selected>Good condition</option>
+                            <option value="Well-loved">Well-loved</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group" style="grid-column: 1 / -1;">
+                        <label for="lister-phone">WhatsApp Phone Number</label>
+                        <input type="tel" id="lister-phone" required placeholder="e.g. 919876543210">
+                    </div>
+                </div>
+
+                <div class="modal-actions">
+                    <button type="button" class="btn-secondary" id="btn-back">← Pick Different Book</button>
+                    <button type="submit" class="btn-primary">Publish Listing</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+
+
 
 
     <footer>
@@ -96,11 +190,7 @@
         <p>© 2026 Daydreamers</p>
     </footer>
 
-    <script src="../js/db.js"></script>
-    <script src="../js/auth.js"></script>
-    <script src="../js/shelf.js"></script>
-    <script src="../js/browse.js"></script>
-    <script src="../js/listing-modal.js"></script>
-    <script src="../js/app.js"></script>
+    <script type="module" src="../js/listing-modal.js"></script>
 </body>
+
 </html>

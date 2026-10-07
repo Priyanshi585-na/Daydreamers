@@ -1,11 +1,4 @@
-import {
-    addBook,
-    getBooks,
-    updateBook,
-    deleteBook,
-    getBook
-} from "./db.js"
-
+import {getBooks,} from "./db.js"
 
 const allBooks = await getBooks();
 
