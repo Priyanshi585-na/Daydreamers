@@ -13,7 +13,6 @@ const step2 = document.getElementById("modal-step-2")
 
 const bookPreview = document.getElementById("selected-preview");
 
-
 let selectedBook = null;
 
 

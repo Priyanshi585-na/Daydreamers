@@ -6,6 +6,9 @@ import {
     getBook
 } from "./db.js"
 
+document.getElementById("browse-now-btn").addEventListener("click", function () {
+    window.location.href = "browse.html";
+});
 
 const allBooks = await getBooks();
 
