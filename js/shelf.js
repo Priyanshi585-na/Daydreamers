@@ -29,6 +29,10 @@ function createBookCard(book) {
     </div>
     <div class="card-footer" style="margin-top:auto; padding-top:12px; border-top:1px solid #EFE3D3; display:flex; flex-direction:column; gap:10px;">
     <div class="lister-row" style="display:flex; align-items:baseline; gap:6px; flex-wrap:wrap;"><span class="lister-name" style="font-size:0.88rem; font-weight:600; color:#3E2C22;">${book.listerName}</span><span class="lister-year" style="font-size:0.78rem; color:#A38B72; white-space:nowrap;">· ${book.listerYear}</span></div>
+
+    <a class="contact-btn" href="https://wa.me/${book.phone}" target="_blank" rel="noopener noreferrer">
+        <i class="fa-brands fa-whatsapp"></i> Contact Lister
+    </a>
     `
     return card;
 }

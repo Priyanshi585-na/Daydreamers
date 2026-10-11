@@ -8,7 +8,9 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&family=Playfair+Display:wght@600;700&display=swap"rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&family=Playfair+Display:wght@600;700&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <link rel="stylesheet" href="../css/styles.css">
 
@@ -48,13 +50,6 @@
                 from your university.
             </p>
 
-            <div class="search-bar">
-                <input id="hero-search-input" type="text" placeholder="Search your next read...">
-                <button id="hero-search-btn" type="button">
-                    <i class="fa-solid fa-magnifying-glass"></i>
-                </button>
-            </div>
-
             <div class="hero-buttons">
                 <button class="primary" id="browse-now-btn" type="button">
                     Browse Books
@@ -75,9 +70,6 @@
 
     </section>
 
-    <section class="categories">
-
-        <h2>Explore</h2>
 
         <div class="category-container">
 
@@ -95,7 +87,6 @@
 
         </div>
 
-    </section>
 
     <section class="books">
         <div class="section-heading">
@@ -110,54 +101,36 @@
     </section>
 
     <section class="features">
-
         <div class="feature">
-
             <i class="fa-solid fa-money-bill-wave"></i>
-
             <h3>Save Money</h3>
-
             <p>
                 Buy books directly from seniors at affordable prices.
             </p>
-
         </div>
-
         <div class="feature">
-
             <i class="fa-solid fa-book-open-reader"></i>
-
             <h3>Borrow Easily</h3>
-
             <p>
                 Borrow books for a semester instead of buying new ones.
             </p>
-
         </div>
 
+
         <div class="feature">
-
             <i class="fa-solid fa-arrows-rotate"></i>
-
             <h3>Exchange Books</h3>
-
             <p>
                 Trade books with fellow students.
             </p>
-
         </div>
-
     </section>
 
 
     <section class="quote">
-
         <blockquote>
-
             “A reader lives a thousand lives before he dies.”
-
         </blockquote>
-
     </section>
 
 
@@ -197,15 +170,19 @@
                         </select>
                     </div>
 
+
                     <div class="form-group">
-                        <label for="listing-genre">Genre / Category</label>
-                        <select id="listing-genre" required>
-                            <option value="fiction" selected>Novels &amp; Fiction</option>
-                            <option value="textbooks">Textbooks &amp; Coursework</option>
-                            <option value="science">Science &amp; Tech</option>
-                            <option value="poetry">Poetry &amp; Plays</option>
+                        <label for="listing-category">Category</label>
+                        <select id="listing-category" required>
+                            <option value="programming">Programming</option>
+                            <option value="engineering">Engineering</option>
+                            <option value="novels">Novels</option>
+                            <option value="competitive-exams">Competitive Exams</option>
+                            <option value="business">Business</option>
+                            <option value="science">Science</option>
                         </select>
                     </div>
+
 
 
                     <div class="form-group">
@@ -242,29 +219,15 @@
         </div>
     </div>
 
-
-
-
-
     <footer>
-
         <h3>Daydreamers</h3>
-
-        <p>
-            A cozy place where books find new homes.
-        </p>
-
-        <p>
-
-            © 2026 Daydreamers
-
-        </p>
-
+        <p> A cozy place where books find new homes. </p>
+        <p> © 2026 Daydreamers</p>
     </footer>
 
     <script type="module" src="../js/shelf.js"></script>
     <script type="module" src="../js/listing-modal.js"></script>
-    
+    <script src="../js/app.js"></script>
 
 </body>
 

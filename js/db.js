@@ -27,7 +27,7 @@ const dbPromise = new Promise((resolve, reject) => {
 
 
 
-export function getBooks() {
+export async function getBooks() {
 
   return dbPromise.then((db) => {
 
@@ -62,7 +62,7 @@ export function getBooks() {
 
 
 
-export function addBook(book) {
+export async function addBook(book) {
 
   return dbPromise.then((db) => {
 
@@ -75,7 +75,7 @@ export function addBook(book) {
 }
 
 
-export function getBook(id) {
+export async function getBook(id) {
 
   return dbPromise.then((db) => {
 
@@ -98,7 +98,7 @@ export function getBook(id) {
 }
 
 
-export function updateBook(book) {
+export async function updateBook(book) {
 
   return dbPromise.then((db) => {
 
@@ -111,7 +111,7 @@ export function updateBook(book) {
 }
 
 
-export function deleteBook(id) {
+export async function deleteBook(id) {
 
   return dbPromise.then((db) => {
 
